@@ -1,0 +1,280 @@
+Library Management System in Java
+This document provides a detailed explanation and implementation of a Library Management System written in Java. The system allows users to manage a library's inventory, including books and magazines. It supports adding new items, displaying the inventory, updating item details, and searching for items by their ID.
+
+Table of Contents
+Overview
+Class Hierarchy
+Implementation Details
+Base Class: LibraryItems
+Subclass: Books
+Subclass: Magazine
+Main Class: LibraryManagement
+Functionality
+Adding Items
+Displaying Inventory
+Updating Publisher
+Searching for Items
+code Execution
+Conclusion
+
+1. Overview
+The Library Management System is a console-based application that allows users to manage a library's inventory. It uses object-oriented programming (OOP) principles such as inheritance, encapsulation, and polymorphism. The system supports two types of library items:
+Books: Includes details like name, author, publication date, and quantity.
+Magazines: Includes details like issue number, publication month, and rating.
+
+2. Class Hierarchy
+The system is structured using the following classes:
+LibraryItems: The base class that contains common attributes like id and publisher.
+Books: A subclass of LibraryItems that adds book-specific attributes.
+Magazine: A subclass of LibraryItems that adds magazine-specific attributes.
+LibraryManagement: The main class that handles user interaction and manages the inventory.
+
+3. Implementation Details
+Base Class: LibraryItems
+Attributes:
+id: Unique identifier for the item.
+publisher: Name of the publisher.
+
+Methods:
+Constructor: Initializes id and publisher.
+Getters and Setters: Provide access to private attributes.
+displayDetails(): Displays the id and publisher.
+
+class LibraryItems {
+    private String id;
+    private String publisher;
+
+    public LibraryItems(String id, String publisher) {
+        this.id = id;
+        this.publisher = publisher;
+    }
+
+    public void setId(String id) { this.id = id; }
+    public String getId() { return id; }
+
+    public void setPublisher(String publisher) { this.publisher = publisher; }
+    public String getPublisher() { return publisher; }
+
+    public void displayDetails() {
+        System.out.print("ID: " + id + ", Publisher: " + publisher);
+    }
+}
+
+Subclass: Books
+Attributes:
+name: Name of the book.
+author: Author of the book.
+publicationDate: Date of publication.
+quantity: Number of copies available.
+
+  Methods:
+Constructor: Initializes attributes using the superclass constructor.
+Getters and Setters: Provide access to private attributes.
+displayDetails(): Overrides the superclass method to display book-specific details.
+
+class Books extends LibraryItems {
+    private String name;
+    private String author;
+    private String publicationDate;
+    private int quantity;
+
+    public Books(String id, String publisher, String name, String author, String publicationDate, int quantity) {
+        super(id, publisher);
+        this.name = name;
+        this.author = author;
+        this.publicationDate = publicationDate;
+        this.quantity = quantity;
+    }
+
+    public void setName(String name) { this.name = name; }
+    public String getName() { return name; }
+
+    public void setAuthor(String author) { this.author = author; }
+    public String getAuthor() { return author; }
+
+    public void setPublicationDate(String publicationDate) { this.publicationDate = publicationDate; }
+    public String getPublicationDate() { return publicationDate; }
+
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public int getQuantity() { return quantity; }
+
+    @Override
+    public void displayDetails() {
+        System.out.println("\n----- Book -----");
+        super.displayDetails();
+        System.out.print(", Name: " + name + ", Author: " + author + ", Publication Date: " + publicationDate + ", Quantity: " + quantity);
+    }
+}
+Subclass: Magazine
+Attributes:
+issueNumber: Issue number of the magazine.
+month: Publication month.
+rating: Rating of the magazine.
+
+Methods:
+Constructor: Initializes attributes using the superclass constructor.
+Getters and Setters: Provide access to private attributes.
+displayDetails(): Overrides the superclass method to display magazine-specific details.
+
+class Magazine extends LibraryItems {
+    private int issueNumber;
+    private String month;
+    private double rating;
+
+    public Magazine(String id, String publisher, int issueNumber, String month, double rating) {
+        super(id, publisher);
+        this.issueNumber = issueNumber;
+        this.month = month;
+        this.rating = rating;
+    }
+
+    public void setIssueNumber(int issueNumber) { this.issueNumber = issueNumber; }
+    public int getIssueNumber() { return issueNumber; }
+
+    public void setMonth(String month) { this.month = month; }
+    public String getMonth() { return month; }
+
+    public void setRating(double rating) { this.rating = rating; }
+    public double getRating() { return rating; }
+
+    @Override
+    public void displayDetails() {
+        System.out.println("\n----- Magazine -----");
+        super.displayDetails();
+        System.out.print(", Issue Number: " + issueNumber + ", Publication Month: " + month + ", Rating: " + rating);
+    }
+}
+Main Class: LibraryManagement
+Attributes:
+inventory: An ArrayList to store all library items.
+
+Methods:
+main(): Entry point of the program. Displays a menu and handles user input.
+addItem(): Adds a new book or magazine to the inventory.
+displayItems(): Displays all items in the inventory.
+updatePublisher(): Updates the publisher of an item by its ID.
+searchItem(): Searches for an item by its ID and displays its details.
+
+public class LibraryManagement {
+    private static ArrayList<LibraryItems> inventory = new ArrayList<>();
+
+    public static void main(String[] args) {
+        Scanner get = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("\n--- Library Management System ---");
+            System.out.println("Press 1. --> Add Item");
+            System.out.println("Press 2. --> Display Library");
+            System.out.println("Press 3. --> Update Publisher");
+            System.out.println("Press 4. --> Search Item");
+            System.out.println("Press 5. --> Exit");
+            System.out.print("Enter your choice: ");
+            choice = get.nextInt();
+            switch (choice) {
+                case 1: addItem(get); break;
+                case 2: displayItems(); break;
+                case 3: updatePublisher(get); break;
+                case 4: searchItem(get); break;
+                case 5: System.out.println("Exiting... Thank you!"); break;
+                default: System.out.println("Invalid choice. Try again.");
+            }
+        } while (choice != 5);
+    }
+
+    public static void addItem(Scanner get) {
+        System.out.print("Enter Item Type (1. Books , 2.Magazine): ");
+        int type = get.nextInt();
+        get.nextLine();
+        System.out.print("Enter Id: ");
+        String id = get.nextLine();
+        System.out.print("Enter Publisher Name: ");
+        String publisher = get.nextLine();
+
+        if (type == 1) {
+            System.out.print("Enter Book Name: ");
+            String name = get.nextLine();
+            System.out.print("Enter Author Name: ");
+            String author = get.nextLine();
+            System.out.print("Publication Date: ");
+            String publicationDate = get.nextLine();
+            System.out.print("Enter Book Quantity: ");
+            int quantity = get.nextInt();
+            inventory.add(new Books(id, publisher, name, author, publicationDate, quantity));
+        } else if (type == 2) {
+            System.out.print("Enter Issue Number: ");
+            int issueNumber = get.nextInt();
+            get.nextLine();
+            System.out.print("Enter Publication Month: ");
+            String month = get.nextLine();
+            System.out.print("Enter Magazine Rating: ");
+            double rating = get.nextDouble();
+            inventory.add(new Magazine(id, publisher, issueNumber, month, rating));
+        } else {
+            System.out.println("Invalid Item Type...");
+        }
+    }
+
+    public static void displayItems() {
+        if (inventory.isEmpty()) {
+            System.out.println("Inventory is empty.");
+        } else {
+            System.out.println("\n   Inventory Details    ");
+            for (LibraryItems item : inventory) {
+                item.displayDetails();
+                System.out.println("\n--------------------------------");
+            }
+        }
+    }
+
+    public static void updatePublisher(Scanner get) {
+        System.out.print("Enter Item ID to update Publisher: ");
+        String id = get.next();
+        get.nextLine();
+        for (LibraryItems item : inventory) {
+            if (item.getId().equals(id)) {
+                System.out.print("Enter new Publisher: ");
+                String publisher = get.nextLine();
+                item.setPublisher(publisher);
+                System.out.println("Publisher updated successfully!");
+                return;
+            }
+        }
+        System.out.println("Item not found.");
+    }
+
+    public static void searchItem(Scanner scanner) {
+        System.out.print("Enter Item ID to search: ");
+        String id = scanner.next();
+        for (LibraryItems item : inventory) {
+            if (item.getId().equals(id)) {
+                item.displayDetails();
+                return;
+            }
+        }
+        System.out.println("Item not found.");
+    }
+}
+
+4. Functionality
+Adding Items
+Users can add books or magazines to the inventory by providing details like ID, publisher, name, author, publication date, and quantity (for books) or issue number, publication month, and rating (for magazines).
+Displaying Inventory
+Displays all items in the inventory, including their details.
+Updating Publisher
+Allows users to update the publisher of an item by specifying its ID.
+Searching for Items
+Searches for an item by its ID and displays its details.
+
+5. Code Execution
+Compile the code using a Java compiler:
+
+javac LibraryManagement.java
+
+Run the program:
+
+java LibraryManagement
+
+Follow the on-screen menu to perform operations like adding items, displaying inventory, updating publishers, and searching for items.
+
+6. Conclusion
+This Library Management System demonstrates the use of OOP principles in Java to create a functional and modular application. It can be extended further by adding features like deleting items, sorting inventory, or saving data to a file. This implementation serves as a foundation for building more complex library management systems.
