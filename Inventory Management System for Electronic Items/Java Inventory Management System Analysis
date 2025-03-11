@@ -1,0 +1,131 @@
+Inventory Management System for Electronic Items
+
+Overview
+This Java program is an Inventory Management System designed to manage electronic items such as laptops and mobiles. It allows users to add items, display the inventory, update item quantities, and search for specific items. The program demonstrates key object-oriented programming (OOP) concepts such as inheritance, encapsulation, and polymorphism.
+
+Key Features
+Add Items: Users can add laptops or mobiles to the inventory by providing details such as ID, name, price, quantity, and additional attributes like processor (for laptops) or operating system (for mobiles).
+Display Inventory: Displays all items in the inventory with their details.
+Update Quantity: Allows users to update the quantity of a specific item by searching for its ID.
+Search Item: Enables users to search for an item by its ID and display its details.
+Exit: Exits the program.
+
+Code Structure
+
+1. Base Class: ElectronicItem
+Represents a generic electronic item.
+Attributes:
+id: Unique identifier for the item.
+name: Name of the item.
+price: Price of the item.
+quantity: Quantity of the item in stock.
+
+Methods:
+Constructor to initialize attributes.
+Getters and setters for encapsulation.
+displayDetails(): Displays the item's details.
+
+2. Subclass: Laptop
+Inherits from ElectronicItem.
+Additional attribute:
+processor: Processor type of the laptop.
+Overrides displayDetails() to include processor information.
+
+3. Subclass: Mobile
+Inherits from ElectronicItem.
+Additional attribute:
+operatingSystem: Operating system of the mobile.
+Overrides displayDetails() to include operating system information.
+
+4. Main Class: InventoryManagement
+Manages the inventory using an ArrayList<ElectronicItem>.
+Provides a menu-driven interface for users to interact with the system.
+
+Methods:
+addItem(): Adds a new item to the inventory.
+displayInventory(): Displays all items in the inventory.
+updateQuantity(): Updates the quantity of an item.
+searchItem(): Searches for an item by its ID.
+
+Implementation Details
+1. Adding an Item
+The user is prompted to choose between adding a laptop or a mobile.
+Based on the choice, the program collects additional details (e.g., processor for laptops, operating system for mobiles).
+The item is then added to the inventory list.
+
+2. Displaying Inventory
+Iterates through the inventory list and calls the displayDetails() method for each item.
+If the inventory is empty, a message is displayed.
+
+3. Updating Quantity
+The user is prompted to enter the ID of the item whose quantity needs to be updated.
+The program searches for the item and updates its quantity if found.
+
+4. Searching for an Item
+The user is prompted to enter the ID of the item to search.
+The program searches for the item and displays its details if found.
+
+Explanation of Key Concepts
+1. Inheritance
+The Laptop and Mobile classes inherit from the ElectronicItem class. This allows them to reuse the attributes and methods of the base class while adding their own specific attributes.
+
+2. Encapsulation
+All attributes in the ElectronicItem class are private, and access is provided through public getters and setters. This ensures data integrity and control over how data is accessed or modified.
+
+3. Polymorphism
+The displayDetails() method is overridden in the Laptop and Mobile classes to include additional details specific to each type of item. This allows the program to call the appropriate method based on the object's type at runtime.
+
+4. ArrayList
+The inventory list stores objects of type ElectronicItem, which can include both Laptop and Mobile objects. This demonstrates the use of polymorphism in collections.
+
+Example Usage
+Adding a Laptop
+Choose option 1 (Add Item).
+Enter item type as 1 (Laptop).
+
+Provide details:
+ID: L001
+Name: Dell XPS 15
+Price: 1500.00
+Quantity: 10
+Processor: Intel i7
+Adding a Mobile
+Choose option 1 (Add Item).
+Enter item type as 2 (Mobile).
+
+Provide details:
+ID: M001
+Name: iPhone 14
+Price: 999.00
+Quantity: 20
+Operating System: iOS 16
+
+Displaying Inventory
+Choose option 2 (Display Inventory).
+
+Output:
+--- Inventory Details ---
+ID: L001, Name: Dell XPS 15, Price: $1500.0, Quantity: 10
+Processor: Intel i7
+--------------------------------
+ID: M001, Name: iPhone 14, Price: $999.0, Quantity: 20
+Operating System: iOS 16
+--------------------------------
+
+Updating Quantity
+Choose option 3 (Update Quantity).
+Enter ID: L001.
+Enter new quantity: 15.
+Output: Quantity updated successfully!
+
+Searching for an Item
+Choose option 4 (Search Item).
+Enter ID: M001.
+
+Output:
+ID: M001, Name: iPhone 14, Price: $999.0, Quantity: 20
+Operating System: iOS 16
+
+Conclusion
+This program is a simple yet effective implementation of an inventory management system for electronic items. It demonstrates core OOP principles and provides a user-friendly interface for managing inventory. It can be extended further by adding features like deleting items, calculating total inventory value, or saving data to a file.
+
