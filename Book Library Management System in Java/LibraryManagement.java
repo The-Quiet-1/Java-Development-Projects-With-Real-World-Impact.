@@ -3,7 +3,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static Projects.InventoryManagement.addItem;
 
 // Base class
 class LibraryItems{
