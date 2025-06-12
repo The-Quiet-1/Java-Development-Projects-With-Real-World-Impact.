@@ -1,0 +1,45 @@
+# Java HashSet Example – Preventing Duplicate Student Records
+
+This Java project demonstrates the use of `HashSet` to store student records while **automatically preventing duplicates** based on the student's roll number. It's a practical example of using Java Collections Framework, particularly `HashSet`, and overriding `equals()` and `hashCode()` methods to ensure uniqueness.
+
+## 🚀 Features
+
+- Accepts student details (Roll No, Name, Age) from user input
+- Prevents duplicate entries based on **Roll Number**
+- Overrides `equals()` and `hashCode()` for custom duplicate-check logic
+- Prints all unique student records using `HashSet`
+
+## 🧠 Core Concepts Demonstrated
+
+- Java Collections (`Set`, `HashSet`)
+- Object equality (`equals` and `hashCode`)
+- User input via `Scanner`
+- Class design and object-oriented programming
+
+## 📦 How to Run
+
+1. Clone or download the repository.
+2. Compile and run the code using any Java IDE or terminal.
+
+```bash
+javac Learn_HashSet.java
+java Learn_HashSet
+
+
+Sample Output
+
+Type No. Of Record You Want: 2
+1. Record --
+Enter Student RollNO: 101
+Enter Student Name: Ravi
+Enter Student Age: 21
+Successfully Added..
+
+2. Record --
+Enter Student RollNO: 101
+Enter Student Name: Amit
+Enter Student Age: 23
+Successfully Added..
+
+----- Students Details -----
+Students{RollNo=101, Name='Ravi', Age=21}
